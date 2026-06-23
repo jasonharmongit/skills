@@ -5,13 +5,13 @@ a directory of jason's personal, public skills
 ## list all skills
 
 ~~~bash
-npx skills add jasonharmongit/skills --list
+npx skills add jasonharmongit/skills --list --full-depth
 ~~~
 
 ## install a single skill
 
 ~~~bash
-npx skills add jasonharmongit/skills --skill <skill-name>
+npx skills add jasonharmongit/skills --skill <skill-name> --full-depth
 ~~~
 
 ## install all skills
@@ -19,8 +19,10 @@ npx skills add jasonharmongit/skills --skill <skill-name>
 ~~~bash
 
 # all skills for a specific agent, global install
-npx skills add jasonharmongit/skills --skill '*' -a <agent> -g -y
+npx skills add jasonharmongit/skills --skill '*' -a <agent> -g -y --full-depth
 ~~~
+
+`--full-depth` is required so skills under `solutionize/` are discovered (they live outside the default scan paths).
 
 this will install the proper `.<agent>` directory under your home directory. I tried with a few different ones and it seemed to always just install under a `.agents` directory.
 
