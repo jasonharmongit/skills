@@ -1,17 +1,17 @@
-# jh-skills
+# skills
 
 a directory of jason's personal, public skills
 
 ## list all skills
 
 ~~~bash
-npx skills add jasonharmongit/jh-skills --list
+npx skills add jasonharmongit/skills --list
 ~~~
 
 ## install a single skill
 
 ~~~bash
-npx skills add jasonharmongit/jh-skills --skill <skill-name>
+npx skills add jasonharmongit/skills --skill <skill-name>
 ~~~
 
 ## install all skills
@@ -19,7 +19,7 @@ npx skills add jasonharmongit/jh-skills --skill <skill-name>
 ~~~bash
 
 # all skills for a specific agent, global install
-npx skills add jasonharmongit/jh-skills --skill '*' -a <agent> -g -y
+npx skills add jasonharmongit/skills --skill '*' -a <agent> -g -y
 ~~~
 
 this will install the proper `.<agent>` directory under your home directory. I tried with a few different ones and it seemed to always just install under a `.agents` directory.
