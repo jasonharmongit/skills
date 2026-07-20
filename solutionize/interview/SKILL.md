@@ -4,9 +4,9 @@ description: Locked assumptions, questions, and follow-ups before a phased sketc
 disable-model-invocation: true
 ---
 
-## Invoking this skill
+## Output format
 
-You must be in **Cursor Plan mode** for the entire duration. All output lives in a `.plan.md` file. Edit the file to include the `## 3 - Interview` section (or adjust the section number as appropriate for your context) with its body.
+Follow [markdown-plan/SKILL.md](../../markdown-plan/SKILL.md) to create the plan file. Put this skill's output in that file as the `## Interview` section with its body.
 
 ## Document structure
 
