@@ -4,12 +4,6 @@ description: Produce a concise current-state narrative
 disable-model-invocation: true
 ---
 
-# Spike
-
-## Your goal
-
-Create one **concise, focused story** that answers: "how does this work today?"
-
 ## Writing principles
 
 **Voice and tone:**

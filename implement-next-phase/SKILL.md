@@ -4,8 +4,6 @@ description: Prepare to implement the next pending todo phase from a solutionize
 disable-model-invocation: true
 ---
 
-# Implement next phase
-
 ## Invoking this skill
 
 Use when the partner attaches this skill and provides the **sketch plan** path. That plan includes YAML **`todos`** (one per phase, each **title** matches the corresponding **`### Phase N - …`** heading in **`plan`**) plus **`## 4 - Sketch`** in the body.

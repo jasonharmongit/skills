@@ -4,8 +4,6 @@ description: Plan-only workflow with a human partner; no implementation while th
 disable-model-invocation: true
 ---
 
-# Solutionize
-
 ## Invoking this skill (non-negotiable)
 
 When the user **invokes** this skill (for example by `@solutionize` or attaching `solutionize/SKILL.md`), **You must switch to Cursor Plan mode immediately** (or ask the user to switch if the agent cannot). Do not continue in Agent mode while executing this skill. **Implementation is strictly prohibited** for the rest of that workflow through step **4** (**`sketch` skill**). That means: no edits to application code, tests, config, or assets for the issue; no commits; no "I'll ship it anyway" because the issue sounds small or concrete, even if the partner phrases the issue as a direct build request (for example "add a dropdown…"). Implementation belongs in a **separate** follow-up after this workflow.

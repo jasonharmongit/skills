@@ -4,12 +4,6 @@ description: Ongoing mindset for refining an existing solutionize sketch plan in
 disable-model-invocation: true
 ---
 
-# Iterate sketch
-
-## What this skill is
-
-This skill is **not** a one-time “apply these edits now” workflow. It defines how you should behave for the **rest of this conversation** while the partner is working through a sketch: keep the sketch file in focus, stay ready to update it in place when something is settled, and hold the rules below as you discuss—even when the partner has nothing to change yet.
-
 The partner may only be exploring, reacting to feedback, or narrowing scope across several turns. **Do not** assume every message includes a concrete edit list. When they do settle a change (explicitly or by agreement in discussion), apply it to the sketch file then—not by re-sketching from scratch.
 
 ## Invoking this skill

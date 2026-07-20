@@ -4,12 +4,6 @@ description: Produce named strategic options with file/line estimates and pros/c
 disable-model-invocation: true
 ---
 
-# Approach
-
-## Your goal
-
-Present a small set of **named, actionable options** to solve the problem. For each option, estimate scope and summarize the tradeoff in one sentence each.
-
 ## Option format
 
 Each option should include:

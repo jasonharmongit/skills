@@ -3,10 +3,6 @@ name: resolve-merge-conflicts
 description: Merges main into the current branch and resolves or surfaces merge conflicts.
 ---
 
-# Resolve Merge Conflicts
-
-Merge `origin/main` into the current branch, resolve conflicts that preserve both sides' behavior, surface true conflicts to the user, run doctor, then commit and push.
-
 ## Step 1 — Merge main
 
 From the repo root:

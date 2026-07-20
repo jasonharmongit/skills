@@ -4,15 +4,9 @@ description: Locked assumptions, questions, and follow-ups before a phased sketc
 disable-model-invocation: true
 ---
 
-# Interview
-
 ## Invoking this skill
 
 You must be in **Cursor Plan mode** for the entire duration. All output lives in a `.plan.md` file. Edit the file to include the `## 3 - Interview` section (or adjust the section number as appropriate for your context) with its body.
-
-## Your goal
-
-Introspect on an approach. Identify and lock down open questions and assumptions that will guide implementation.
 
 ## Document structure
 

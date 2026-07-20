@@ -6,8 +6,6 @@ description: >-
   best practices, or SKILL.md format.
 ---
 
-# Create Skill
-
 ## Skill Anatomy
 
 ### Frontmatter
@@ -25,6 +23,10 @@ disable-model-invocation: true
 - **name**: Kebab-case identifier for the skill
 - **description**: A single sentence giving a very high-level summary of what the skill does. Do not include specifics about how the skill works, when to invoke it, or trigger terms.
 - **disable-model-invocation**: Include `disable-model-invocation: true` by default so the skill only loads when explicitly named.
+
+### Body
+
+Do not include a header on the skill. The frontmatter already supplies a title and high-level description, so that isn't needed. For the body, jump straight into the skill itself.
 
 ## Skill File Structure
 
