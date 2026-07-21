@@ -47,9 +47,7 @@ git commit --no-edit   # completes the merge if one was in progress
 
 ## Step 4 — Doctor
 
-Read and follow `doctor/SKILL.md`, but **skip Step 1 (Conventions review)**. Run doctor steps 2–4 on the branch as it exists after the merge (including any conflict resolutions).
-
-If doctor fails on something introduced by conflict resolution, fix it within doctor's scope rules. If a failure reflects an unresolved semantic choice from the merge, stop and report to the user instead of guessing.
+Read and follow `doctor/SKILL.md`. If doctor fails on something introduced by conflict resolution, fix it within doctor's scope rules. If a failure reflects an unresolved semantic choice from the merge, stop and report to the user instead of guessing.
 
 ## Step 5 — Commit and push
 
