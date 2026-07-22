@@ -2,6 +2,8 @@
 name: approach
 description: Produce named strategic options with file/line estimates and pros/cons
 disable-model-invocation: true
+metadata:
+  dependents: solutionize
 ---
 
 ## Option format

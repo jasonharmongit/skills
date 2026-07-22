@@ -1,6 +1,8 @@
 ---
 name: resolve-merge-conflicts
 description: Merges main into the current branch and resolves or surfaces merge conflicts.
+metadata:
+  dependencies: doctor
 ---
 
 ## Step 1 — Merge main

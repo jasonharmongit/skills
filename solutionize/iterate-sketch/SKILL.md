@@ -2,6 +2,8 @@
 name: iterate-sketch
 description: Ongoing mindset for refining an existing solutionize sketch plan in place.
 disable-model-invocation: true
+metadata:
+  dependencies: sketch, implement-next-phase
 ---
 
 The partner may only be exploring, reacting to feedback, or narrowing scope across several turns. **Do not** assume every message includes a concrete edit list. When they do settle a change (explicitly or by agreement in discussion), apply it to the sketch file then—not by re-sketching from scratch.

@@ -2,6 +2,8 @@
 name: spike
 description: Produce a concise current-state narrative
 disable-model-invocation: true
+metadata:
+  dependents: solutionize
 ---
 
 ## Writing principles

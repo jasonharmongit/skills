@@ -2,6 +2,8 @@
 name: solutionize
 description: Plan-only workflow with a human partner; no implementation while this skill governs the turn
 disable-model-invocation: true
+metadata:
+  dependencies: spike, approach, interview, sketch
 ---
 
 ## Invoking this skill (non-negotiable)

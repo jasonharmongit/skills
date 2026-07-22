@@ -2,6 +2,9 @@
 name: interview
 description: Locked assumptions, questions, and follow-ups before a phased sketch
 disable-model-invocation: true
+metadata:
+  dependencies: markdown-plan
+  dependents: solutionize
 ---
 
 ## Output format
