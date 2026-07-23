@@ -1,9 +1,9 @@
 ---
 name: jh-create-skill
-description: >-
-  Guides users through creating effective Agent Skills for Cursor. Use when you
-  want to create, write, or author a new skill, or asks about skill structure,
-  best practices, or SKILL.md format.
+description: Guides users through creating effective Agent Skills for Cursor.
+disable-model-invocation: true
+metadata:
+  dependents: refine-skill
 ---
 
 ## Skill Anatomy
@@ -32,10 +32,13 @@ metadata:
   dependents: downstream-skill
 ```
 
-- **`dependencies`**: Other skills this one tells the agent to read or follow (explicit `` **`skill-name` skill** ``, `` **`skill-name`** ``, or a link to `skill-name/SKILL.md`). Skill-to-skill only - not reference files, hooks, or sub-paths under another skill.
+- **`dependencies`**: Other skills this one tells the agent to read and follow (explicit `` **`skill-name` skill** ``, `` **`skill-name`** ``, or a link to `skill-name/SKILL.md`). Skill-to-skill only - not reference files, hooks, or sub-paths under another skill. Add a dependency only when the body sends the agent through that skill's workflow - not to borrow one fact you can inline.
 - **`dependents`**: The reverse - skills that depend on this one. Keep both sides in sync when you add or change a link.
 - Use comma-separated skill `name` values. Omit `dependencies` or `dependents` when empty.
 - Do not infer dependencies from artifact names or shared tooling unless the body explicitly names the skill.
+- Do not repeat content from dependency skills in the body (connection strings, generic query steps, launch instructions).
+- Merge workflow steps that a dependency skill already covers (e.g. DB reads when `query-local-database` is a dependency).
+- Avoid chaining skills for trivia; if only one line matters, put it in the body instead of adding a dependency.
 
 When editing a skill, check its `metadata` and update connected skills if the relationship changed.
 
@@ -71,3 +74,17 @@ Challenge each piece of information:
 - "Does the agent really need this explanation?"
 - "Can I assume the agent knows this?"
 - "Does this paragraph justify its token cost?"
+
+**Usually cut** (agent already knows how):
+- Generic investigation ("find the entry point", "read the tests", "trace the code")
+- Standard tooling habits ("use aliases", "copy-pasteable blocks", "run in IEx not mix run")
+- Explaining *why* an instruction exists when the instruction alone is enough
+
+**Usually keep** (skill-specific or user-defined):
+- Hard behavioral rules the agent would otherwise violate ("do not run the thing under test", "ask before writing data")
+- Non-obvious repo bootstrap (supervisor trees, env flags, paths that fail silently)
+- Output shape the user expects (numbered workflow, before/run/after sections)
+- Scope limiters ("one happy path", "one basic scenario")
+- Project conventions agents get wrong (fixtures unavailable outside test, never `ecto.reset` without approval)
+
+When in doubt, keep the rule and cut the rationale.
