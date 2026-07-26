@@ -33,6 +33,7 @@ metadata:
 - **Maximum 3 sentences per paragraph.** Longer paragraphs signal you haven't distilled the idea
 - Use white space generously—it helps readers absorb each beat before moving forward
 - Start each paragraph with a new actor or stage in the flow
+- Group related beats under `##` headings—a few plain-English words per stage (not module names)
 
 ## Anti-patterns to avoid
 
