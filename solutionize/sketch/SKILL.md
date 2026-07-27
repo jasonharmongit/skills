@@ -3,12 +3,17 @@ name: sketch
 description: Phased implementation-ready sketch with objectives and symbol-level bullets.
 disable-model-invocation: true
 metadata:
+  dependencies: markdown-plan
   dependents: solutionize, iterate-sketch
 ---
 
 Do not modify application code, tests, configuration, or project assets while this skill governs the turn. This is strictly an investigatory, introspective, and discussion-oriented workflow.
 
-## 4 - Sketch
+## Output format
+
+Follow [markdown-plan/SKILL.md](../../markdown-plan/SKILL.md) to create a **new** plan file. Put this skill's phased output in that file as the `## Sketch` section with its body.
+
+## Sketch content
 
 **Output of this step:** an implementation-ready sketch using **ordered phases** for the chosen approach.
 
@@ -58,7 +63,10 @@ Prefer file-scoped bullets. When one logical change spans multiple files, use on
 
 In phase implementation bullets, avoid optionality phrasing (for example: "or", "either", "if you want", "could", "optionally", "or equivalent", "may", "might"). Pick one path per bullet.
 
-Example phase:
+## Example
+
+```markdown
+## Sketch
 
 ### Phase 1 - Outcome param and list filtering
 **Objective:** Add URL-backed status-category filtering to the paginated API logs list.
@@ -81,3 +89,4 @@ Example phase:
   - **outcome filtering and invalid status_category**
     - Cover success and failed filtering.
     - Cover invalid `status_category` in the URL.
+```
