@@ -3,7 +3,6 @@ name: sketch
 description: Phased implementation-ready sketch with objectives and symbol-level bullets.
 disable-model-invocation: true
 metadata:
-  dependencies: markdown-plan
   dependents: solutionize, iterate-sketch
 ---
 
@@ -11,7 +10,11 @@ Do not modify application code, tests, configuration, or project assets while th
 
 ## Output format
 
-Follow [markdown-plan/SKILL.md](../../markdown-plan/SKILL.md) to create a **new** plan file. Put this skill's phased output in that file as the `## Sketch` section with its body.
+Create a **new** plan file at `~/.cursor/plans/<name>.plan.md`. Choose any descriptive filename; it must end with `.plan.md`.
+
+The file must have YAML frontmatter with **only** `todos`—no `name`, `overview`, or other keys. Add one todo per sketch phase, in order; each todo's text is the full `### Phase N - …` heading for that phase (for example `Phase 1 - Outcome param and list filtering`).
+
+Put this skill's phased output in the file body as the `## Sketch` section.
 
 ## Sketch content
 
