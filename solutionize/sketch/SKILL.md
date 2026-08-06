@@ -3,7 +3,7 @@ name: sketch
 description: Phased implementation-ready sketch with objectives and symbol-level bullets.
 disable-model-invocation: true
 metadata:
-  dependents: solutionize, iterate-sketch
+  dependents: solutionize, modify-sketch, implement-next-phase
 ---
 
 Do not modify application code, tests, configuration, or project assets while this skill governs the turn. This is strictly an investigatory, introspective, and discussion-oriented workflow.
