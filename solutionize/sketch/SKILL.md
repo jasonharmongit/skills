@@ -12,12 +12,10 @@ Do not modify application code, tests, configuration, or project assets while th
 
 Create a **new** plan file at `~/.cursor/plans/<name>.plan.md`. Choose any descriptive filename; it must end with `.plan.md`.
 
-The file must use Cursor's plan frontmatter format:
+The file must include todos, using Cursor's plan frontmatter format:
 
 ```yaml
 ---
-name: ""
-overview: ""
 todos:
   - id: phase-1-<slug>
     content: Phase 1 - <Title>
@@ -25,11 +23,9 @@ todos:
   - id: phase-2-<slug>
     content: Phase 2 - <Title>
     status: pending
-isProject: false
 ---
 ```
 
-- `name` and `overview` are required keys; just use empty strings.
 - Add one todo per sketch phase, in order.
 - Each todo's `content` is the full `### Phase N - …` heading for that phase (for example `Phase 1 - Outcome param and list filtering`).
 - Each todo's `id` is a stable kebab-case slug derived from the phase title (for example `phase-1-outcome-param-and-list-filtering`).
