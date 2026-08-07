@@ -55,13 +55,13 @@ Omit test files and `describe` blocks with nothing to add or change.
 **Example:**
 
 ```markdown
-# billing_test.exs
-### calculate_proration/2
+# billing_test.exs 🆕
+### calculate_proration/2 🆕
 - `prorates mid-cycle upgrade` 🆕: credit equals unused days on old plan
 - same as `prorates mid-cycle upgrade` but downgrade 🆕
 
 ### apply_coupon/2
-- `rejects expired coupon`: add case for newly added grace-period window
+- `rejects expired coupon`: add grace-period window case
 
 # user_controller_test.exs
 ### POST /api/users
