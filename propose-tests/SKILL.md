@@ -37,15 +37,17 @@ Three levels: test file → `describe` → proposed test.
 
 | Level | Heading | Content |
 | --- | --- | --- |
-| Test file | `#` | Basename only - `billing_test.exs`, not the full path |
-| Describe | `###` | Existing or new `describe` string the test belongs in |
-| Test | `-` bullet | `test "name"`: one-line note |
+| Test file | `#` | Basename only - `billing_test.exs`, not the full path. Append 🆕 if net-new. |
+| Describe | `###` | Existing or new `describe` string. Append 🆕 if net-new. |
+| Test | `-` bullet | `` `name` 🆕: one-line note `` - append 🆕 only if net-new. |
+
+**Emoji rules:** Append 🆕 after a **net-new** test file, `describe`, or test name. No emoji means the item already exists (including proposals that modify an existing test).
 
 **Bullet rules:**
 
-- **New test** - state what it would assert or exercise.
+- **New test** (🆕) - state what it would assert or exercise.
 - **Existing test** - say how it would change, not repeat what it already does.
-- **Similar case** - reference a sibling: `same as "upgrades plan" but downgrade mid-cycle`.
+- **Similar case** (🆕) - reference a sibling: same as `upgrades plan` but downgrade mid-cycle.
 - Stay concise; plain language; no redundant setup detail.
 
 Omit test files and `describe` blocks with nothing to add or change.
@@ -55,13 +57,13 @@ Omit test files and `describe` blocks with nothing to add or change.
 ```markdown
 # billing_test.exs
 ### calculate_proration/2
-- prorates mid-cycle upgrade: new - credit equals unused days on old plan
-- same as "prorates mid-cycle upgrade" but downgrade: new
+- `prorates mid-cycle upgrade` 🆕: credit equals unused days on old plan
+- same as `prorates mid-cycle upgrade` but downgrade 🆕
 
 ### apply_coupon/2
-- rejects expired coupon: expand - add case for newly added grace-period window
+- `rejects expired coupon`: add case for newly added grace-period window
 
 # user_controller_test.exs
 ### POST /api/users
-- returns 422 when email is duplicate: existing - also assert username uniqueness error
+- `returns 422 when email is duplicate`: also assert username uniqueness error
 ```
