@@ -3,88 +3,46 @@ name: jh-create-skill
 description: Guides users through creating effective Agent Skills for Cursor.
 disable-model-invocation: true
 metadata:
+  dependencies: writing-for-agents
   dependents: refine-skill
 ---
 
-## Skill Anatomy
+## Structure
+
+### File structure
+
+```
+skill-name/
+├── SKILL.md
+├── reference.md      # optional
+├── examples.md       # optional
+└── scripts/          # optional
+```
 
 ### Frontmatter
 
-Every `SKILL.md` file starts with YAML frontmatter:
-
-```markdown
+```yaml
 ---
 name: your-skill-name
 description: Brief high-level description of what this skill does.
 disable-model-invocation: true
+metadata:
+  dependencies: other-skill
+  dependents: downstream-skill
 ---
 ```
 
-- **name**: Kebab-case identifier for the skill
-- **description**: A single sentence giving a very high-level summary of what the skill does. Do not include specifics about how the skill works, when to invoke it, or trigger terms.
-- **disable-model-invocation**: Include `disable-model-invocation: true` by default so the skill only loads when explicitly named.
+- **name:** kebab-case, max 64 chars, lowercase letters, numbers, hyphens only.
+- **metadata:**
+  - **`dependencies`:** skills this one tells the agent to read and follow (`` **`skill-name` skill** ``, `` **`skill-name`** ``, or a link to `skill-name/SKILL.md`). Skill-to-skill only - not reference files, hooks, or sub-paths.
+  - **`dependents`:** the reverse. Keep both sides in sync.
+  - Comma-separated `name` values. Omit empty fields.
+  - Do not infer dependencies from artifact names or shared tooling unless the body explicitly names the skill.
 
-**Skill connections** (optional, in `metadata`):
+## Content
 
-```yaml
-metadata:
-  dependencies: other-skill, another-skill
-  dependents: downstream-skill
-```
+Read the **`writing-for-agents`** skill and follow it - this skill covers skill-specific mechanics only.
 
-- **`dependencies`**: Other skills this one tells the agent to read and follow (explicit `` **`skill-name` skill** ``, `` **`skill-name`** ``, or a link to `skill-name/SKILL.md`). Skill-to-skill only - not reference files, hooks, or sub-paths under another skill. Add a dependency only when the body sends the agent through that skill's workflow - not to borrow one fact you can inline.
-- **`dependents`**: The reverse - skills that depend on this one. Keep both sides in sync when you add or change a link.
-- Use comma-separated skill `name` values. Omit `dependencies` or `dependents` when empty.
-- Do not infer dependencies from artifact names or shared tooling unless the body explicitly names the skill.
-- Do not repeat content from dependency skills in the body (connection strings, generic query steps, launch instructions).
-- Merge workflow steps that a dependency skill already covers (e.g. DB reads when `query-local-database` is a dependency).
-- Avoid chaining skills for trivia; if only one line matters, put it in the body instead of adding a dependency.
-
-When editing a skill, check its `metadata` and update connected skills if the relationship changed.
-
-### Body
-
-Do not include a header on the skill. The frontmatter already supplies a title and high-level description, so that isn't needed. For the body, jump straight into the skill itself.
-
-## Skill File Structure
-
-### Directory Layout
-
-Skills are stored as directories containing a `SKILL.md` file:
-
-```
-skill-name/
-├── SKILL.md              # Required - main instructions
-├── reference.md          # Optional - detailed documentation
-├── examples.md           # Optional - usage examples
-└── scripts/              # Optional - utility scripts
-    ├── validate.py
-    └── helper.sh
-```
-
-## Core Authoring Principles
-
-### 1. Concise is Key
-
-The context window is shared with conversation history, other skills, and requests. Every token competes for space.
-
-**Default assumption**: The agent is already very smart. Only add context it doesn't already have.
-
-Challenge each piece of information:
-- "Does the agent really need this explanation?"
-- "Can I assume the agent knows this?"
-- "Does this paragraph justify its token cost?"
-
-**Usually cut** (agent already knows how):
-- Generic investigation ("find the entry point", "read the tests", "trace the code")
-- Standard tooling habits ("use aliases", "copy-pasteable blocks", "run in IEx not mix run")
-- Explaining *why* an instruction exists when the instruction alone is enough
-
-**Usually keep** (skill-specific or user-defined):
-- Hard behavioral rules the agent would otherwise violate ("do not run the thing under test", "ask before writing data")
-- Non-obvious repo bootstrap (supervisor trees, env flags, paths that fail silently)
-- Output shape the user expects (numbered workflow, before/run/after sections)
-- Scope limiters ("one happy path", "one basic scenario")
-- Project conventions agents get wrong (fixtures unavailable outside test, never `ecto.reset` without approval)
-
-When in doubt, keep the rule and cut the rationale.
+- No title header or description - frontmatter already supplies identity.
+- List a skill in `dependencies` only when this body routes the agent through that skill's workflow; an isolated fact or rule stays inline here.
+- When a skill is listed, remove from this body any step or rule that dependency already owns - do not restate it.
