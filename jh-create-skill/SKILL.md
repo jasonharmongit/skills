@@ -33,6 +33,7 @@ metadata:
 ```
 
 - **name:** kebab-case, max 64 chars, lowercase letters, numbers, hyphens only.
+- **description**: A single sentence giving a very high-level summary of what the skill does. Do not include specifics about how the skill works, when to invoke it, or trigger terms.
 - **metadata:**
   - **`dependencies`:** skills this one tells the agent to read and follow (`` **`skill-name` skill** ``, `` **`skill-name`** ``, or a link to `skill-name/SKILL.md`). Skill-to-skill only - not reference files, hooks, or sub-paths.
   - **`dependents`:** the reverse. Keep both sides in sync.
