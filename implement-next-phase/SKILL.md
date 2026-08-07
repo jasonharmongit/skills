@@ -19,16 +19,7 @@ Use when the partner attaches this skill and provides the **sketch plan** path. 
 
 ## Git staging (before each phase cycle)
 
-Every time this skill starts a **fresh phase cycle**—the first pending phase in the plan, or the next pending phase after earlier ones were implemented—**stage first**, then read and prepare. Do not begin step 1 below until staging is done.
-
-1. Run:
-
-~~~bash
-git diff --name-only
-~~~
-
-2. **If any path prints:** run `git add -A`, then continue. Do not inspect whether staging changed anything; do not commit.
-3. **If empty:** continue immediately.
+Every time this skill starts a **fresh phase cycle**—the first pending phase in the plan, or the next pending phase after earlier ones were implemented—run `git add -A`, then read and prepare. Do not commit. Do not begin step 1 below until staging is done.
 
 This checkpoints work from the prior phase (or any other unstaged edits) before new preparation or implementation begins.
 
