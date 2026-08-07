@@ -37,7 +37,7 @@ Three levels: test file → `describe` → proposed test.
 
 | Level | Heading | Content |
 | --- | --- | --- |
-| Test file | `##` | Basename only - `billing_test.exs`, not the full path |
+| Test file | `#` | Basename only - `billing_test.exs`, not the full path |
 | Describe | `###` | Existing or new `describe` string the test belongs in |
 | Test | `-` bullet | `test "name"`: one-line note |
 
@@ -53,7 +53,7 @@ Omit test files and `describe` blocks with nothing to add or change.
 **Example:**
 
 ```markdown
-## billing_test.exs
+# billing_test.exs
 ### calculate_proration/2
 - prorates mid-cycle upgrade: new - credit equals unused days on old plan
 - same as "prorates mid-cycle upgrade" but downgrade: new
@@ -61,7 +61,7 @@ Omit test files and `describe` blocks with nothing to add or change.
 ### apply_coupon/2
 - rejects expired coupon: expand - add case for newly added grace-period window
 
-## user_controller_test.exs
+# user_controller_test.exs
 ### POST /api/users
 - returns 422 when email is duplicate: existing - also assert username uniqueness error
 ```
