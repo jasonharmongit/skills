@@ -44,6 +44,6 @@ metadata:
 
 Read the **`writing-for-agents`** skill and follow it - this skill covers skill-specific mechanics only.
 
-- No title header or description - frontmatter already supplies identity.
+- Do not include any kind of header. No title, no description, no starting section, no introduction, no preface.
 - List a skill in `dependencies` only when this body routes the agent through that skill's workflow; an isolated fact or rule stays inline here.
 - When a skill is listed, remove from this body any step or rule that dependency already owns - do not restate it.
