@@ -26,7 +26,7 @@ Read `gh stack --help` if you are unsure of a command flag.
 
 Respond with **one concise table only**. No other prose, headers, diagrams, or commentary.
 
-Table columns: stack position (`#`), PR title, file count, one-line scope. Show stack order bottom to top.
+Table columns: stack position (`#`), PR title, file count, one-line scope. Show stack order bottom to top. Position `#1` is always the current branch name (the base PR targeting `main`).
 
 Optimize for **ease of review**, not ease of splitting. Full-file slices are common, but split within a file when that makes each PR easier to review. Keep tightly coupled changes together; minimize unrelated diff per slice.
 
@@ -44,14 +44,15 @@ fi
 git stash push -u -m "pre-split"
 ```
 
-**Initialize** on an updated default branch:
+**Initialize** on an updated default branch. Use the current branch as the bottom (first) PR:
 
 ```bash
+BASE_BRANCH=$(git branch --show-current)
 git checkout main && git pull origin main
-gh stack init --base main <branch-1> <branch-2> ... <branch-n>
+gh stack init --base main "$BASE_BRANCH" <branch-2> ... <branch-n>
 ```
 
-Branch names bottom to top. Bottom branch targets `main`; each upper branch targets the one below.
+Branch names bottom to top. The current branch is always position 1; it targets `main`. Each upper branch targets the one below.
 
 **Per slice** (bottom up):
 
