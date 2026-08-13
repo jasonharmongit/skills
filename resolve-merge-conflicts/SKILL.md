@@ -30,6 +30,12 @@ Check the whole **stack** is **linear**. GitHub requires every branch to sit dir
 
 If any link is broken, fix **downstack first** (parent before child). A lower branch that skipped its parent (e.g. petal-components missing a commit from admin-search-lookups) must be rebased and pushed before rebasing branches above it. Rebasing only the top branch leaves duplicate commits and the divergence banner.
 
+When syncing the whole stack, repeat Steps 2–7 **one branch at a time** — each branch onto its updated parent, then push — before moving up.
+
+## Scope — current branch only
+
+Work on the **checked-out branch** only. Sync with `<base>`, resolve its conflict markers, finish the rebase or merge, push.
+
 ## Step 2 — Sync with the base
 
 Fetch the base, then sync. For a **stacked** branch, **rebase** onto the parent. For a branch based on `main`, **merge** `main`.
@@ -85,7 +91,7 @@ Then finish the in-progress operation:
 
 ## Step 5 — Doctor
 
-Find, read and follow the `doctor` skill. If doctor fails on something introduced by conflict resolution, fix it within doctor's scope rules. If a failure reflects an unresolved semantic choice from the sync, stop and report to the user instead of guessing.
+Find, read and follow the `doctor` skill. Fix failures only when directly caused by conflict resolution or by changes in **this branch's diff**. If a failure needs edits owned by a downstream PR, it is out of scope — report it and continue to push unless the user says otherwise. If a failure reflects an unresolved semantic choice from the sync, stop and report to the user instead of guessing.
 
 ## Step 6 — Commit and push
 
@@ -123,6 +129,7 @@ gh stack view
 ## Notes
 
 - Never reset or abort a rebase/merge unless the user asks.
+- Use CLI rebase only (`git rebase origin/<base>`). Never open GitLens interactive rebase or run `git rebase -i`.
 - Prefer preserving both sides' intent over picking one side when combination is safe.
 - If sync fails for a reason other than conflicts (e.g. uncommitted changes blocking it), fix or report that first.
 - `gh stack rebase` rebases the whole stack and can fail on the top branch. When it does, rebase each broken branch manually in downstack order, push each with `--force-with-lease`, then rebase the next branch up.
