@@ -28,8 +28,8 @@ The goal is full alignment with the user, ready for implementation — not an in
    - **An empty frontier means no interview.** If the approach leaves no open decision on requirements or implementation, state that in chat, write nothing, and stop for the user's direction
    - Otherwise follow [markdown-plan/SKILL.md](../../markdown-plan/SKILL.md) to write the `## Interview` section in the shape of the Example below: `### Locked assumptions` from step 1, then `### Round 1` holding this frontier
 
-4. **Enter discussion mode** — Tell the user the round is ready and wait for their input. The user may answer questions, ask their own clarifying questions, discuss tradeoffs, or request changes to assumptions.
-   - Every question and every answer lives in the `.plan.md` file. Keep chat for proceed confirmations
+4. **Enter discussion mode** — Write the plan file only; send no chat message. The user may answer questions, ask their own clarifying questions, discuss tradeoffs, or request changes to assumptions.
+   - Every question and every answer lives in the `.plan.md` file
    - Recommendations are yours to write; answers arrive only as the user's edits to each `Answer:` line
    - `AskQuestion` and any other tool that surfaces as a chat prompt are off-limits for this skill
 
@@ -41,7 +41,7 @@ The goal is full alignment with the user, ready for implementation — not an in
 6. **Ask the next round** — After step 5 closes out the current round, write the next `### Round N` block if a frontier remains and repeat steps 4 and 5. Once it is empty, go to step 7.
    - Append each round at the end using the next index (`### Round 2`, `### Round 3`, and so on); earlier rounds stand as written
 
-7. **Ready for approval** — Respond in chat: "Interview is complete; ready for approval to proceed." Wait for the user's explicit proceed confirmation before anything else.
+7. **Ready for approval** — Send no chat message. Wait for the user's explicit proceed confirmation before anything else.
 
 ---
 
