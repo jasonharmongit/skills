@@ -21,6 +21,7 @@ metadata:
 
 **Beat anchors:**
 - At each main beat, embed **one** markdown link on the word or short phrase that best names the action or decision point in plain English—e.g. "When the user [submits](/Users/…/business_information_component.ex#L35) the business information step of campaign registration…"
+- The link **target** is always a resolved path in the codebase (see **Code references**). Never use a ticket, issue, PR, or doc URL as the beat anchor—even when a Linear or GitHub issue motivated the spike. Read the ticket for context; link the code you traced.
 - The link label is whatever reads naturally in the sentence (often a verb or short phrase), not a module name, file path, or `Module.function` string
 - Surrounding context stays unlinked: "business information step" and "campaign registration" do not need links unless that beat is specifically about them
 - Do not litter the paragraph with links for every helper, callback, or symbol you could name
