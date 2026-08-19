@@ -24,9 +24,24 @@ Read `gh stack --help` if you are unsure of a command flag.
 
 ## 2. Propose the split
 
-Respond with **one concise table only**. No other prose, headers, diagrams, or commentary.
+Respond with **nested markdown only**. No other prose, diagrams, or commentary.
 
-Table columns: stack position (`#`), PR title, file count, one-line scope. Show stack order bottom to top. Position `#1` is always the current branch name (the base PR targeting `main`).
+Show stack order bottom to top. Position `1` is always the bottom slice on the current branch (targeting `main`).
+
+For each slice:
+
+```markdown
+### 1 - show cc email on import request page
+
+File count: x
+
+- path/to/file.ex
+- path/to/other.ex:start-end
+```
+
+PR titles: short and descriptive, all lowercase, starting with a verb (for example `show`, `add`, `persist`, `implement`, `fix`). Do not use branch names as titles.
+
+List every path in the slice as one bullet. For intra-file splits, use `path:start-end` line ranges instead of the full path. File count is the number of bullets.
 
 Optimize for **ease of review**, not ease of splitting. Full-file slices are common, but split within a file when that makes each PR easier to review. Keep tightly coupled changes together; minimize unrelated diff per slice.
 
@@ -68,6 +83,12 @@ Branch names bottom to top. The current branch is always position 1; it targets 
 
 ```bash
 gh stack submit --auto --open
+```
+
+Leave every PR description blank. After submit, clear any auto-filled body:
+
+```bash
+gh pr edit <pr-number> --body ""
 ```
 
 ## 4. Report back
