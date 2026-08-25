@@ -28,18 +28,16 @@ Respond with **nested markdown only**. No other prose, diagrams, or commentary.
 
 Show stack order bottom to top. Position `1` is always the bottom slice on the current branch (targeting `main`).
 
-For each slice:
+For each slice, use the heading as the PR title: short and descriptive, starting with a verb (for example `show`, `add`, `persist`, `implement`, `fix`). Do not use branch names as titles. Do not repeat titles in a separate list after the outline.
 
 ```markdown
-### 1 - show cc email on import request page
+### 1 - Show cc email on import request page
 
 File count: x
 
 - path/to/file.ex
 - path/to/other.ex:start-end
 ```
-
-PR titles: short and descriptive, all lowercase, starting with a verb (for example `show`, `add`, `persist`, `implement`, `fix`). Do not use branch names as titles.
 
 List every path in the slice as one bullet. For intra-file splits, use `path:start-end` line ranges instead of the full path. File count is the number of bullets.
 
