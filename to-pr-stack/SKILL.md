@@ -12,6 +12,7 @@ metadata:
 - Never discard user work. No destructive git commands (`reset --hard`, `clean -fdx`, branch deletion, force-push, history rewrite) without explicit approval.
 - Always save a recoverable snapshot before moving work around.
 - Stage only named files or hunks. No `git add .` / `git add -A`.
+- Stacking is **organizational only**. Earlier slices may **exclude** hunks or files that depend on work in later slices (for example, omit an enqueue until the worker lands). What is prohibited is **modifying, adding, or stubbing** code in intermediate slices: no rewrites, no stand-ins, no new logic. Every line in a slice must be an exact, unchanged excerpt from the existing work; excluded lines appear unchanged in a later slice.
 - Always use a linear `gh stack`, even when two slices have no compile-time dependency and could ship as parallel PRs off `main`. Order foundations before consumers when dependencies exist; otherwise order by reviewer concern or logical grouping.
 
 ## 1. Gather context
@@ -41,7 +42,7 @@ File count: x
 
 List every path in the slice as one bullet. For intra-file splits, use `path:start-end` line ranges instead of the full path. File count is the number of bullets.
 
-Optimize for **ease of review**, not ease of splitting. Full-file slices are common, but split within a file when that makes each PR easier to review. Keep tightly coupled changes together; minimize unrelated diff per slice.
+Optimize for **ease of review**, not ease of splitting. Full-file slices are common; split within a file when that helps review and each slice uses exact excerpts from the existing work. Exclude dependent hunks from earlier slices rather than rewriting them. Keep tightly coupled changes together when they cannot be separated by exclusion alone.
 
 Wait for explicit approval before executing. A request by the user to make an adjustment is NOT approval - respond with the adjustment, and re-seek approval.
 
@@ -71,7 +72,7 @@ Branch names bottom to top. The current branch is always position 1; it targets 
 
 1. `gh stack bottom` or `gh stack up` to reach the slice branch.
 2. If the branch tip is behind the parent slice, fast-forward: `git merge <parent-branch> --ff-only`.
-3. Restore this slice's changes from `stash@{0}`. Use whole-file checkout when the slice is file-complete; use `git add -p` or patch staging when the approved plan splits within a file.
+3. Restore this slice's changes from `stash@{0}`. Use whole-file checkout when the slice is file-complete; use `git add -p` or patch staging when the approved plan splits within a file. Do not edit restored content.
 4. For untracked files in the stash, use the stash untracked parent: `git checkout stash@{0}^3 -- <paths>`.
 5. Stage deletions explicitly (`git rm`) when a slice renames or removes files.
 6. Commit with a message focused on why.
