@@ -26,19 +26,20 @@ The goal is full alignment with the user, ready for implementation — not an in
    - Each frontier question should be answerable and material to moving forward; hold edge cases and micro-decisions that can wait
    - Before each `Answer:` line, write `Recommendation:` followed by one sentence stating what you would choose and why
    - **An empty frontier means no interview.** If the approach leaves no open decision on requirements or implementation, state that in chat, write nothing, and stop for the user's direction
-   - Otherwise follow [markdown-plan/SKILL.md](../../markdown-plan/SKILL.md) to write the `## Interview` section in the shape of the Example below: `### Locked assumptions` from step 1, then `### Round 1` holding this frontier
+   - Otherwise read [markdown-plan/SKILL.md](../../markdown-plan/SKILL.md) to write a plan file with an `## Interview` section in the shape of the Example below: `### Locked assumptions` from step 1, then `### Round 1` holding this frontier
 
 4. **Enter discussion mode** — Write the plan file only; send no chat message. The user may answer questions, ask their own clarifying questions, discuss tradeoffs, or request changes to assumptions.
    - Every question and every answer lives in the `.plan.md` file
    - Recommendations are yours to write; answers arrive only as the user's edits to each `Answer:` line
    - `AskQuestion` and any other tool that surfaces as a chat prompt are off-limits for this skill
+   - **Stop here.** Do not close the round, open the next round, or assume blank `Answer:` lines mean acceptance. Wait for the user to edit the plan and give explicit permission to advance the interview.
 
 5. **Review answers and recompute the frontier** — Re-read the answers and introspect on what they reveal: which questions do they unblock, which gaps do they expose, which assumptions do they settle or change? Gather any new facts they point to.
    - Close out the round under review: for each question, if the user filled `Answer:`, remove its `Recommendation:` line; if they left `Answer:` blank, remove that line and keep `Recommendation:` as the settled decision
    - An ambiguous, contradictory, or incomplete answer becomes a question in the next round rather than a decision you carry forward on your own read of it
-   - Each round of answers reshapes the tree: settled decisions push the frontier outward and unblock the questions that depended on them; then move on to the next round
+   - Each round of answers reshapes the tree: settled decisions push the frontier outward and unblock the questions that depended on them
 
-6. **Ask the next round** — After step 5 closes out the current round, write the next `### Round N` block if a frontier remains and repeat steps 4 and 5. Once it is empty, go to step 7.
+6. **Ask the next round** — Only after step 5 closes out the current round with explicit user permission, write the next `### Round N` block if a frontier remains and repeat steps 4 and 5. Once it is empty, go to step 7.
    - Append each round at the end using the next index (`### Round 2`, `### Round 3`, and so on); earlier rounds stand as written
 
 7. **Ready for approval** — Send no chat message. Wait for the user's explicit proceed confirmation before anything else.
