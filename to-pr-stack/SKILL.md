@@ -27,12 +27,14 @@ Read `gh stack --help` if you are unsure of a command flag.
 
 Respond with **nested markdown only**. No other prose, diagrams, or commentary.
 
-Show stack order bottom to top. Position `1` is always the bottom slice on the current branch (targeting `main`).
+Show stack order bottom to top. Position `1` is always the bottom slice, targeting `main`. Every slice gets a new branch name; do not reuse the current branch.
 
 For each slice, use the heading as the PR title: short and descriptive, starting with a verb (for example `show`, `add`, `persist`, `implement`, `fix`). Do not use branch names as titles. Do not repeat titles in a separate list after the outline.
 
+Branch names use the slice position, a hyphen, then a kebab-case slug from the title (for example position `1` with title `Add foo bar` becomes `1-add-foo-bar`). Derive them during execution; do not include branch names in the proposal or final report.
+
 ```markdown
-### 1 - Show cc email on import request page
+### 1 - Add foo bar
 
 File count: x
 
@@ -58,15 +60,14 @@ fi
 git stash push -u -m "pre-split"
 ```
 
-**Initialize** on an updated default branch. Use the current branch as the bottom (first) PR:
+**Initialize** on an updated default branch. Create every slice as a new branch from the approved plan:
 
 ```bash
-BASE_BRANCH=$(git branch --show-current)
 git checkout main && git pull origin main
-gh stack init --base main "$BASE_BRANCH" <branch-2> ... <branch-n>
+gh stack init --base main 1-add-foo-bar 2-update-baz-qux ...
 ```
 
-Branch names bottom to top. The current branch is always position 1; it targets `main`. Each upper branch targets the one below.
+Branch names bottom to top, derived from each slice's position and title. The bottom branch targets `main`; each upper branch targets the one below. Leave the original branch unchanged.
 
 **Per slice** (bottom up):
 
