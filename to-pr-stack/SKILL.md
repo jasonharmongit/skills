@@ -50,6 +50,12 @@ Wait for explicit approval before executing. A request by the user to make an ad
 
 ## 3. Execute the stack
 
+Before leaving the monolithic branch, record its PR number:
+
+```bash
+MONOLITH_PR=$(gh pr list --head "$(git branch --show-current)" --json number -q '.[0].number')
+```
+
 **Snapshot** (when work is uncommitted):
 
 ```bash
@@ -90,6 +96,17 @@ Leave every PR description blank. After submit, clear any auto-filled body:
 ```bash
 gh pr edit <pr-number> --body ""
 ```
+
+**Link monolith** (skip when `MONOLITH_PR` is empty):
+
+```bash
+REPO=$(gh repo view --json nameWithOwner -q .nameWithOwner)
+BOTTOM_PR=$(gh stack view --json -q '.branches[0].pr.number')
+STACK_NUM=$(gh api "repos/${REPO}/stacks?pull_request=${BOTTOM_PR}" -q '.[0].number')
+gh pr comment "${MONOLITH_PR}" --body "review-stack:${STACK_NUM}"
+```
+
+This posts a pointer on the monolithic PR so comment-triage agents can load the stack without guessing.
 
 ## 4. Report back
 
