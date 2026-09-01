@@ -25,6 +25,8 @@ gh pr list --head "$(git branch --show-current)" --json number,title,url,baseRef
 
 The result must be an open PR whose `baseRefName` is `main`. If not, stop and ask the user to switch to the monolithic branch.
 
+Record the monolithic branch name (`MONOLITH_BRANCH`) for Step 5.
+
 Open that PR with `gh pr view`. Build a **monolith ledger** (internally):
 
 - Full diff: `gh pr diff` or `git diff "$(git merge-base HEAD origin/main)"...HEAD`
@@ -153,10 +155,15 @@ Output **only** the summary table. No heading, prose, bullet lists, or other rep
 
 When the user replies `next`, work through stack PRs **bottom to top**. Skip PRs with zero remaining open comments.
 
-For each PR that still has open comments:
+Stay checked out on **`MONOLITH_BRANCH`** for the whole step. The user sees every change in full monolith context. Do not check out a stack branch for edits or review laps.
 
-1. Check out that PR's branch.
-2. Read and follow the **`resolve-pr-comments`** skill through Step 6 (commit, push, and upstack propagation).
+For each stack PR that still has open comments:
+
+1. Read and follow the **`resolve-pr-comments`** skill, using **that stack PR** as the comment target (not the monolith PR).
+2. At **`resolve-pr-comments` Step 6**, commit and push on **both** branches before moving on:
+   - Commit on `MONOLITH_BRANCH` and push it.
+   - Port the same commit(s) onto that stack PR's branch, push it, then run upstack propagation (`gh stack rebase --upstack`, `gh stack push`).
+   - Return to `MONOLITH_BRANCH` before the next stack PR.
 3. Do not start the next stack PR until the current one is fully finished on GitHub.
 
 When every stack PR has no remaining open comments, tell the user the stack is done.
