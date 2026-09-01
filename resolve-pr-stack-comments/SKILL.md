@@ -159,8 +159,8 @@ Stay checked out on **`MONOLITH_BRANCH`** for the whole step. The user sees ever
 
 For each stack PR that still has open comments:
 
-1. Read and follow the **`resolve-pr-comments`** skill, using **that stack PR** as the comment target (not the monolith PR).
-2. At **`resolve-pr-comments` Step 6**, commit and push on **both** branches before moving on:
+1. Read and follow the **`resolve-pr-comments`** skill, using **that stack PR** as the comment target (not the monolith PR). At **`resolve-pr-comments` Step 5**, run `cbc <stack-pr-number>` (not bare `cbc`) because `MONOLITH_BRANCH` is checked out.
+2. At **`resolve-pr-comments` Step 6** (only when code changes were made), commit and push on **both** branches before moving on:
    - Commit on `MONOLITH_BRANCH` and push it.
    - Port the same commit(s) onto that stack PR's branch, push it, then run upstack propagation (`gh stack rebase --upstack`, `gh stack push`).
    - Return to `MONOLITH_BRANCH` before the next stack PR.
