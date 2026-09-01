@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 ## Constraints
 
-Do not change code, commit, push, or rebase.
+Steps 1-4 only: do not change code, commit, push, or rebase.
 
 ## Stack conventions
 
@@ -140,9 +140,23 @@ Edit only comments marked not applicable.
 
 ## 4. Report
 
-Output **only** the summary table below. No heading, prose, bullet lists, or other report content.
+Output **only** the summary table. No heading, prose, bullet lists, or other report content. After the table, say exactly: `Say 'next' to proceed to resolving remaining comments, branch by branch.`
 
 | Branch | PR | Closed (not applicable) | Remain open |
 |--------|----|--------------------|-------------|
 | `1-add-foo-bar` | [#1802](url) | n | n |
 | … | … | … | … |
+
+**Stop here.** Wait for the user to reply `next`.
+
+## 5. Resolve remaining comments
+
+When the user replies `next`, work through stack PRs **bottom to top**. Skip PRs with zero remaining open comments.
+
+For each PR that still has open comments:
+
+1. Check out that PR's branch.
+2. Read and follow the **`resolve-pr-comments`** skill through Step 6 (commit, push, and upstack propagation).
+3. Do not start the next stack PR until the current one is fully finished on GitHub.
+
+When every stack PR has no remaining open comments, tell the user the stack is done.
