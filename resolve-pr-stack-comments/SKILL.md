@@ -1,6 +1,6 @@
 ---
 name: resolve-pr-stack-comments
-description: Triage duplicate review comments across a monolithic PR and its split stack.
+description: Resolve review comments across a pr stack
 disable-model-invocation: true
 ---
 
@@ -31,7 +31,7 @@ Open that PR with `gh pr view`. Build a **monolith ledger** (internally):
 - Every discussion comment and every inline review thread (resolved and unresolved)
 - Which concerns were already fixed, explicitly ignored, or deferred in chat on the monolith PR
 
-Skim title, body, and changed paths. This ledger is the source of truth for duplicate detection.
+Skim title, body, and changed paths. This ledger is the source of truth for not-applicable detection.
 
 ## 2. Stack discovery
 
@@ -83,30 +83,30 @@ query($owner: String!, $repo: String!, $number: Int!) {
 
 Only triage threads where `isResolved` is false.
 
-### Evaluate duplicates
+### Evaluate not-applicable comments
 
-For each unresolved comment, mark **duplicate** when any of these hold:
+For each unresolved comment, mark **not applicable** when any of these hold. Use the matching reply text exactly:
 
-1. **Monolith ledger** - the same concern was already fixed or explicitly ignored on the monolith PR (including resolved inline threads and discussion replies).
-2. **Narrow scope** - the comment targets code or behavior absent from this slice's diff but present in the monolith diff (or a higher stack layer that the monolith includes). Use `gh pr diff <stack-pr-number>` for the slice and the monolith diff for the full change set. Typical cases: "missing handler", "missing migration", "missing test", "unused import until later slice".
+1. **Monolith ledger** - the same concern was already fixed or explicitly ignored on the monolith PR (including resolved inline threads and discussion replies). Reply: `not applicable - already addressed`
+2. **Narrow scope** - the comment targets code or behavior absent from this slice's diff but present in the monolith diff (or a higher stack layer that the monolith includes). Use `gh pr diff <stack-pr-number>` for the slice and the monolith diff for the full change set. Typical cases: "missing handler", "missing migration", "missing test", "unused import until later slice". Reply: `not applicable - broader context solves this`
 
 When unsure, leave the comment open.
 
-### Close duplicates
+### Close not-applicable comments
 
 Track counts per branch: `closed` and `remain open`.
 
 **Inline review thread**
 
-1. Reply:
+1. Reply with the matching text from **Evaluate not-applicable comments**:
 
 ```bash
 gh api graphql -f query='
-mutation($threadId: ID!) {
-  addPullRequestReviewThreadReply(input: {pullRequestReviewThreadId: $threadId, body: "duplicate"}) {
+mutation($threadId: ID!, $body: String!) {
+  addPullRequestReviewThreadReply(input: {pullRequestReviewThreadId: $threadId, body: $body}) {
     comment { id }
   }
-}' -f threadId=PRRT_...
+}' -f threadId=PRRT_... -f body="<NOT_APPLICABLE_REPLY>"
 ```
 
 2. Resolve:
@@ -128,7 +128,7 @@ Edit the original comment, wrapping its existing body:
 gh api --method PATCH "repos/${REPO}/issues/comments/${COMMENT_ID}" \
   -f body="$(cat <<EOF
 <details>
-<summary>duplicate</summary>
+<summary><NOT_APPLICABLE_REPLY></summary>
 
 ${ORIGINAL_BODY}
 </details>
@@ -136,15 +136,13 @@ EOF
 )"
 ```
 
-Do not edit comments that are not duplicates.
+Edit only comments marked not applicable.
 
 ## 4. Report
 
-Brief summary table:
+Output **only** the summary table below. No heading, prose, bullet lists, or other report content.
 
-| Branch | PR | Closed (duplicate) | Remain open |
+| Branch | PR | Closed (not applicable) | Remain open |
 |--------|----|--------------------|-------------|
 | `1-add-foo-bar` | [#1802](url) | n | n |
 | … | … | … | … |
-
-List any stack PRs that had zero unresolved comments.
