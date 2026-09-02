@@ -46,7 +46,7 @@ The goal is full alignment with the user, ready for implementation — not an in
 6. **Ask the next round** — Only after step 5 closes out the current round with explicit user permission, write the next `### Round N` block if a frontier remains and repeat steps 4 and 5. Once it is empty, go to step 7.
    - Append each round at the end using the next index (`### Round 2`, `### Round 3`, and so on); earlier rounds stand as written
 
-7. **Ready for approval** — Send no chat message. Wait for the user's explicit proceed confirmation before anything else.
+7. **Ready for approval** — Do not add anything else to the plan file. Tell the user you are ready to proceed, and wait for their explicit confirmation before implementing.
 
 ---
 
