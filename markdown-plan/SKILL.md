@@ -6,6 +6,8 @@ metadata:
   dependents: interview
 ---
 
-Create a plan file at `~/.cursor/plans/<name>.plan.md`. Choose any descriptive filename; it must end with `.plan.md`.
+VERY IMPORTANT: Create a plan file at `~/.cursor/plans/<name>.plan.md`. IT MAY NOT GO IN ANY OTHER DIRECTORY! 
+
+Choose any descriptive filename; it must end with `.plan.md`.
 
 Write the file body in standard markdown with whatever the user asked for. No YAML frontmatter in the plan file itself.
