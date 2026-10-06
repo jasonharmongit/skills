@@ -1,7 +1,6 @@
 ---
 name: jh-create-skill
 description: Guides users through creating effective Agent Skills for Cursor.
-disable-model-invocation: true
 metadata:
   dependencies: writing-for-agents
   dependents: refine-skill
@@ -35,14 +34,14 @@ metadata:
 - **name:** kebab-case, max 64 chars, lowercase letters, numbers, hyphens only.
 - **description**: A single sentence giving a very high-level summary of what the skill does. Do not include specifics about how the skill works, when to invoke it, or trigger terms.
 - **metadata:**
-  - **`dependencies`:** skills this one tells the agent to read and follow (`` **`skill-name` skill** ``, `` **`skill-name`** ``, or a link to `skill-name/SKILL.md`). Skill-to-skill only - not hooks or sub-paths.
+  - **`dependencies`:** skills this one tells the agent to read and follow. Skill-to-skill only - not hooks or sub-paths. In the body, reference each dependency with its hypothetical install path under `~/.agents`, for example `~/.agents/skills/other-skill/SKILL.md` or `~/.agents/skills/bundle-name/other-skill/SKILL.md`.
   - **`dependents`:** the reverse. Keep both sides in sync.
   - Comma-separated `name` values. Omit empty fields.
   - Do not infer dependencies from artifact names or shared tooling unless the body explicitly names the skill.
 
 ## Content
 
-Read the **`writing-for-agents`** skill and follow it - this skill covers skill-specific mechanics only.
+Read `~/.agents/skills/jh-private-skills/writing-for-agents/SKILL.md` and follow it - this skill covers skill-specific mechanics only.
 
 - Do not include any kind of header. No title, no description, no starting section, no introduction, no preface.
 - List a skill in `dependencies` only when this body routes the agent through that skill's workflow; an isolated fact or rule stays inline here.
@@ -56,7 +55,7 @@ A skill tells the agent **how to do a kind of task**. It is not a write-up of **
 
 - Ordered workflow and scope limits (what to do, what to skip).
 - Hard rules the agent breaks without them (environment traps, "never halt remsh", approval gates).
-- Pointers to other skills when that workflow is their job.
+- Pointers to other skills when that workflow is their job, each as a `~/.agents/skills/.../SKILL.md` path.
 
 **Leave out**
 
