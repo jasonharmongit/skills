@@ -1,6 +1,6 @@
 ---
-name: jh-create-skill
-description: Guides users through creating effective Agent Skills for Cursor.
+name: create-or-edit-skill
+description: How to create and edit skills.
 metadata:
   dependencies: writing-for-agents
   dependents: refine-skill
@@ -41,7 +41,7 @@ metadata:
 
 ## Content
 
-Read `~/.agents/skills/jh-private-skills/writing-for-agents/SKILL.md` and follow it - this skill covers skill-specific mechanics only.
+Read the `writing-for-agents` and follow it - this skill covers skill-specific mechanics only.
 
 - Do not include any kind of header. No title, no description, no starting section, no introduction, no preface.
 - List a skill in `dependencies` only when this body routes the agent through that skill's workflow; an isolated fact or rule stays inline here.
