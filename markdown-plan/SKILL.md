@@ -1,7 +1,6 @@
 ---
 name: markdown-plan
 description: Write the user's request as a markdown plan file under ~/.cursor/plans.
-disable-model-invocation: true
 metadata:
   dependents: interview
 ---
