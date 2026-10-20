@@ -34,7 +34,7 @@ metadata:
 - **name:** kebab-case, max 64 chars, lowercase letters, numbers, hyphens only.
 - **description**: A single sentence giving a very high-level summary of what the skill does. Do not include specifics about how the skill works, when to invoke it, or trigger terms.
 - **metadata:**
-  - **`dependencies`:** skills this one tells the agent to read and follow. Skill-to-skill only - not hooks or sub-paths. In the body, reference each dependency with its hypothetical install path under `~/.agents`, for example `~/.agents/skills/other-skill/SKILL.md` or `~/.agents/skills/bundle-name/other-skill/SKILL.md`.
+  - **`dependencies`:** skills this one tells the agent to read and follow. Skill-to-skill only - not hooks or sub-paths. List each skill's `name` here; in the body, point to it in natural language (see **Content**).
   - **`dependents`:** the reverse. Keep both sides in sync.
   - Comma-separated `name` values. Omit empty fields.
   - Do not infer dependencies from artifact names or shared tooling unless the body explicitly names the skill.
@@ -46,6 +46,7 @@ Read the `writing-for-agents` and follow it - this skill covers skill-specific m
 - Do not include any kind of header. No title, no description, no starting section, no introduction, no preface.
 - List a skill in `dependencies` only when this body routes the agent through that skill's workflow; an isolated fact or rule stays inline here.
 - When a skill is listed, remove from this body any step or rule that dependency already owns - do not restate it.
+- When the body routes the agent through a dependency skill, write it in natural language: read and follow the `<skill-name>` skill. Use that skill's `name` in backticks, always with the word skill. Do not use file paths.
 
 ### Task, not one run
 
@@ -55,7 +56,7 @@ A skill tells the agent **how to do a kind of task**. It is not a write-up of **
 
 - Ordered workflow and scope limits (what to do, what to skip).
 - Hard rules the agent breaks without them (environment traps, "never halt remsh", approval gates).
-- Pointers to other skills when that workflow is their job, each as a `~/.agents/skills/.../SKILL.md` path.
+- Pointers to other skills when that workflow is their job (read and follow the `<skill-name>` skill).
 
 **Leave out**
 
