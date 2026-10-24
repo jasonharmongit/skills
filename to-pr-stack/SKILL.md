@@ -91,6 +91,12 @@ Branch names bottom to top, derived from each slice's position and title. The bo
 gh stack submit --auto --open
 ```
 
+Set an upstream on every stack branch so editor PR extensions can find each branch's PR:
+
+```bash
+gh stack view --json | jq -r '.branches[].name' | xargs -I{} git branch --set-upstream-to=origin/{} {}
+```
+
 Leave every PR description blank. After submit, clear any auto-filled body:
 
 ```bash
