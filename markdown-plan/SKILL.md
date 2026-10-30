@@ -1,6 +1,6 @@
 ---
 name: markdown-plan
-description: Write the user's request as a markdown plan file under ~/.cursor/plans.
+description: Writes the user's request as a markdown plan file under ~/.cursor/plans.
 metadata:
   dependents: interview
 ---

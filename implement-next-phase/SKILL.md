@@ -1,7 +1,6 @@
 ---
 name: implement-next-phase
-description: Prepare to implement the next pending todo phase from a solutionize sketch plan (frontmatter todos); implementation only after explicit user approval.
-disable-model-invocation: true
+description: Invoke only when implement-next-phase is mentioned by name. Prepares to implement the next pending todo phase from a solutionize sketch plan (frontmatter todos); implementation only after explicit user approval.
 metadata:
   dependencies: sketch
   dependents: modify-sketch

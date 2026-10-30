@@ -23,8 +23,7 @@ Put every step, rule, and example in **`SKILL.md`**. Do not add other sibling do
 ```yaml
 ---
 name: your-skill-name
-description: Brief high-level description of what this skill does.
-disable-model-invocation: true
+description: Invoke only when your-skill-name is mentioned by name. Summarizes what the skill does in third-person present tense.
 metadata:
   dependencies: other-skill
   dependents: downstream-skill
@@ -32,7 +31,7 @@ metadata:
 ```
 
 - **name:** kebab-case, max 64 chars, lowercase letters, numbers, hyphens only.
-- **description**: A single sentence giving a very high-level summary of what the skill does. Do not include specifics about how the skill works, when to invoke it, or trigger terms.
+- **description:** Do **not** use `disable-model-invocation`. It blocks discovery when another skill references this skill by name. For skills invoked only via `/skill-name`, explicit attachment, or a named pointer in another skill body, start with `Invoke only when {name} is mentioned by name. ` (use the skill's `name` value). Follow with a high-level summary in **third-person present tense** (e.g. `Investigates`, `Reviews`, `Runs` - not `Investigate`, `Review`, `Run`). You may add a second sentence starting with `Uses when` for extra natural-language triggers. Do not restate the full workflow. For skills the agent should auto-select from ordinary user phrasing (uncommon), omit the invoke prefix and write the summary in third person; you may include `Use when` trigger hints.
 - **metadata:**
   - **`dependencies`:** skills this one tells the agent to read and follow. Skill-to-skill only - not hooks or sub-paths. List each skill's `name` here; in the body, point to it in natural language (see **Content**).
   - **`dependents`:** the reverse. Keep both sides in sync.

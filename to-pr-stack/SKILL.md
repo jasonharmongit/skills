@@ -1,7 +1,6 @@
 ---
 name: to-pr-stack
-description: Split current work into a GitHub stacked PR series using gh stack.
-disable-model-invocation: true
+description: Invoke only when to-pr-stack is mentioned by name. Splits current work into a GitHub stacked PR series using gh stack.
 metadata:
   dependencies: surge-rules
 ---

@@ -1,7 +1,6 @@
 ---
 name: propose-tests
-description: Proposes missing test coverage for branch changes without writing tests.
-disable-model-invocation: true
+description: Invoke only when propose-tests is mentioned by name. Proposes missing test coverage for branch changes without writing tests.
 ---
 
 Propose tests only. Do not write, edit, or run tests unless the user asks.
