@@ -2,6 +2,7 @@
 name: resolve-merge-conflicts
 description: Syncs the current branch with its merge base (stack parent or main), resolves or surfaces conflicts, then runs doctor and pushes.
 metadata:
+  author: jasonharmon
   dependencies: doctor
 ---
 

@@ -2,6 +2,7 @@
 name: to-pr-stack
 description: Invoke only when to-pr-stack is mentioned by name. Splits current work into a GitHub stacked PR series using gh stack.
 metadata:
+  author: jasonharmon
   dependencies: surge-rules
 ---
 

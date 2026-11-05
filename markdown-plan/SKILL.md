@@ -2,6 +2,7 @@
 name: markdown-plan
 description: Writes the user's request as a markdown plan file under ~/.cursor/plans.
 metadata:
+  author: jasonharmon
   dependents: interview
 ---
 

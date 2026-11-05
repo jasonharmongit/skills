@@ -2,6 +2,7 @@
 name: create-or-edit-skill
 description: How to create and edit skills.
 metadata:
+  author: jasonharmon
   dependencies: writing-for-agents
   dependents: refine-skill
 ---
@@ -25,6 +26,7 @@ Put every step, rule, and example in **`SKILL.md`**. Do not add other sibling do
 name: your-skill-name
 description: Invoke only when your-skill-name is mentioned by name. Summarizes what the skill does in third-person present tense.
 metadata:
+  author: jasonharmon
   dependencies: other-skill
   dependents: downstream-skill
 ---
@@ -33,6 +35,7 @@ metadata:
 - **name:** kebab-case, max 64 chars, lowercase letters, numbers, hyphens only.
 - **description:** Do **not** use `disable-model-invocation`. It blocks discovery when another skill references this skill by name. For skills invoked only via `/skill-name`, explicit attachment, or a named pointer in another skill body, start with `Invoke only when {name} is mentioned by name. ` (use the skill's `name` value). Follow with a high-level summary in **third-person present tense** (e.g. `Investigates`, `Reviews`, `Runs` - not `Investigate`, `Review`, `Run`). You may add a second sentence starting with `Uses when` for extra natural-language triggers. Do not restate the full workflow. For skills the agent should auto-select from ordinary user phrasing (uncommon), omit the invoke prefix and write the summary in third person; you may include `Use when` trigger hints.
 - **metadata:**
+  - **`author`:** skill author (for example `jasonharmon`).
   - **`dependencies`:** skills this one tells the agent to read and follow. Skill-to-skill only - not hooks or sub-paths. List each skill's `name` here; in the body, point to it in natural language (see **Content**).
   - **`dependents`:** the reverse. Keep both sides in sync.
   - Comma-separated `name` values. Omit empty fields.
