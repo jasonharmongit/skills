@@ -40,7 +40,7 @@ metadata:
 
 ## Content
 
-Read the `writing-for-agents` and follow it - this skill covers skill-specific mechanics only.
+Read the `writing-for-agents` skill and follow it - this skill covers skill-specific mechanics only.
 
 - Do not include any kind of header. No title, no description, no starting section, no introduction, no preface.
 - List a skill in `dependencies` only when this body routes the agent through that skill's workflow; an isolated fact or rule stays inline here.
