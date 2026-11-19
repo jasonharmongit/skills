@@ -19,7 +19,7 @@ Answer in chat only. Do not edit code or write files.
 2. Pick the primary user path. Note any feature flag or condition that gates it, and what the old path still does. Other entry points that join this path get one sentence in the stage where they join it.
 3. Hunt for loose ends: risks in the changes, such as unwired code, external calls without idempotency, side effects that cannot be retried after a charge or send, and states the user cannot leave.
 4. Write the story in the shape and voice below.
-5. Check each stage against the code: call order, which system does what, where the user goes next, and that each link lands on the line it names.
+5. Check each stage against the code: call order, which system does what, where the user goes next, and that each link lands on the line where that beat runs in that order (not a helper definition elsewhere).
 
 ## Shape
 
@@ -39,4 +39,5 @@ Answer in chat only. Do not edit code or write files.
 - Give each main beat **one** markdown link on the word or short phrase that names the action, for example "When the user [confirms](/abs/path/order_controller.ex#L42) the order…". The reader should follow the story without clicking.
 - Link only changed or new code a reader needs to review that beat. When a side effect runs through unchanged code, name the system and the effect with no link.
 - The label reads naturally in the sentence, usually a verb or short phrase. Never a module name, function name, or file path. Do not use backticks for code references.
-- Resolve each target with `realpath` and append `#L…` for the definition or clause. Use the working-tree line numbers, so uncommitted changes link correctly.
+- Resolve each target with `realpath` and append `#L…` for the line where that beat runs in the call chain: the call site, `with` step, branch, or pipeline step the sentence describes. Do not default to the helper's definition. Link a definition or dispatch clause only when the beat is that entry (for example a route action or a type-dispatch clause).
+- Use working-tree line numbers so uncommitted changes link correctly.
