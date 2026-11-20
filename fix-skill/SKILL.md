@@ -14,7 +14,7 @@ metadata:
    - `~/private-skills`
    - `~/skills`
 
-   **Off-limits:** `~/.agents`. Do not read, search, or edit anything there.
+   **Off-limits:** `~/.agents` and `~/.cursor/skills`. Do not read, search, or edit anything there.
 
    If no match, tell the user which repos you searched and ask for the skill path or name.
 
