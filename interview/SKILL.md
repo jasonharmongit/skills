@@ -21,10 +21,11 @@ The goal is full alignment with the user, ready for implementation — not an in
 2. **Gather facts** — Facts are your job, never the user's. Think deeply about what still needs to be decided, then settle every part of it the environment can answer within the **fact boundary**:
    - User-provided context: the current message, attachments, URLs the user sent, and chat history in this conversation
    - The immediate repo: source, tests, docs, and plan files the user attached or named in this conversation
-   - Do not read paths outside the immediate repo — including other plan files, other repos, or `~/.cursor/plans` — unless the user explicitly points you there
+   - External sources and tools: web search, public docs, and read-only checks you can run yourself
+   - Do not read local paths outside the immediate repo — including other plan files, other repos, or `~/.cursor/plans` — unless the user explicitly points you there
    - Subagents and codebase search stay inside the fact boundary
    - Placement: load the `rules.md` from `review-layers`, `review-minimalism`, `review-contracts`, and the `review-structuring` skills (but do not follow the `single-review` skill; use them just to reference their rules). Settle layer, defensiveness, helper extraction, peeling, and return shape from those skills. A choice those skills already decide is not a frontier question
-   - Put only *decisions* to the user; anything you could look up within the boundary, look up
+   - Put only *decisions* to the user; resolve any fact you can look up or figure out within the boundary yourself
    - Before treating something as a gap, check whether it is already locked or implied. If yes, do not ask
    - Identify gaps: which decisions would directly affect implementation scope, file count, PR size, or architecture? Which decisions would change how work flows through the system?
 
