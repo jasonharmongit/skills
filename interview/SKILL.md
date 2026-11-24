@@ -32,6 +32,7 @@ The goal is full alignment with the user, ready for implementation — not an in
 3. **Compute the first frontier and write it** — The open decisions form a tree: every decision branches into the decisions that hang off it. The **frontier** is every decision whose prerequisites are already settled — the questions you can ask *now* without guessing at answers you have not heard yet. A question that depends on another question in the same round belongs to a later round.
    - **Frontier bar:** Ask only when a decision genuinely matters to behavior, scope, or architecture and cannot be inferred from context. Assume sensible defaults for low-stakes implementation details and obvious corollaries, and record them under locked assumptions instead of asking
    - Each frontier question should be answerable and material to moving forward; hold edge cases that can wait
+   - Write questions and recommendations in plain language, framed around behavior and tradeoffs rather than code symbols or implementation jargon
    - Before each `Answer:` line, write `Recommendation:` followed by one sentence stating what you would choose and why
    - **Empty frontier → no interview document.** If implied decisions and facts settle every requirement and implementation choice, do not create a `.plan.md`. Skip to step 7
    - Otherwise read the `markdown-plan` skill to write a plan file with an `## Interview` section in the shape of the Example below: `### Locked assumptions` from step 1, then `### Round 1` holding this frontier
